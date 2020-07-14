@@ -49,6 +49,13 @@ define(['ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'knockout', 'o
         }
       }.bind(this);
 
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
       this.compare = function() {
         // Remove empty strings from list
         var noEmpty = items().filter(function(item) {
@@ -60,9 +67,14 @@ define(['ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'knockout', 'o
           scores.set(items()[i], 0);
           for (var j = i+1; j < items().length; j++) {
             // Create list of pairs
-            tuples.push([items()[i], items()[j]]);
+            if (Math.floor(Math.random() * 2)) {
+              tuples.push([items()[i], items()[j]]);
+            } else {
+              tuples.push([items()[j], items()[i]]);
+            }
           }
         }
+        shuffleArray(tuples);
         this.step();
       }.bind(this);
 
