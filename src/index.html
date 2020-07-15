@@ -65,11 +65,11 @@
             </oj-bind-for-each>
             <br>
             <div>
-              <oj-button class="oj-button-md oj-sm-margin-1x-horizontal" on-oj-action="[[addItem]]" disabled="[[comparisonFinished() ? true : false]]">Add Item</oj-button>
-              <oj-button class="oj-button-md oj-sm-margin-1x-horizontal" chroming="callToAction" on-oj-action="[[compare]]" disabled="[[comparisonFinished() ? true : false]]">Compare</oj-button>
+              <oj-button class="oj-button-md oj-sm-margin-1x-horizontal" on-oj-action="[[addItem]]" disabled="[[comparisonFinished()]]">Add Item</oj-button>
+              <oj-button class="oj-button-md oj-sm-margin-1x-horizontal" chroming="callToAction" on-oj-action="[[compare]]" disabled="[[comparisonFinished()]]">Compare</oj-button>
             </div>
             <br>
-            <oj-dialog style="display:none;max-width:450px" id="modalDialog" dialog-title="Make a choice" cancel-behavior="icon">
+            <oj-dialog style="display:none;width:23vw;" id="modalDialog" dialog-title="Make a choice" cancel-behavior="icon" on-oj-before-close="[[cancelDialog]]">
               <div slot="body">
                 <div class="oj-flex oj-sm-justify-content-space-around oj-sm-align-items-center">
                   <oj-button on-oj-action="[[chooseItem1]]">

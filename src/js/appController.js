@@ -114,14 +114,17 @@ define(['ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'knockout', 'o
         }, this);
       }.bind(this);
 
-      this.closeDialog = function() {
-        document.getElementById("modalDialog").close();
-        this.item1("");
-        this.item2("");
-        tuples = [];
-        currTuple = -1;
-        scores = new Map();
-        scoresData([]);
+      this.cancelDialog = function(event) {
+        // Check if dialog is being closed by cancel button
+        if (event.detail.hasOwnProperty('originalEvent')) {
+          document.getElementById("modalDialog").close();
+          this.item1("");
+          this.item2("");
+          tuples = [];
+          currTuple = -1;
+          scores.clear();
+          scoresData([]);
+        }
       }.bind(this);
 
       this.reset = function() {
@@ -130,7 +133,7 @@ define(['ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'knockout', 'o
         this.item2("");
         tuples = [];
         currTuple = -1;
-        scores = new Map();
+        scores.clear();
         scoresData([]);
         var inputFields = document.querySelectorAll('oj-input-text');
         Array.prototype.forEach.call(inputFields, function (inputField) {
